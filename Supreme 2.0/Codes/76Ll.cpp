@@ -1,5 +1,5 @@
 //Leetcode 25 : Reverse group of k nodes in the linked list.
-/*
+
 #include<iostream>
 using namespace std;
 
@@ -11,6 +11,10 @@ class Node{
 public:
     int data;
     Node *next;
+
+    Node(){
+        this->next = NULL;
+    }
 
     Node(int data){
         this->data = data;
@@ -75,7 +79,7 @@ Node* reverseKNodes(Node* head ,int k ,int lengthOfLl){
         head->next = recckaAns;
     }
 
-    return recckaAns;    
+    return prev;    
 }
 
 int main()
@@ -83,14 +87,14 @@ int main()
     Node *first = new Node(5);
     Node *second = new Node(15);
     Node *third = new Node(25);
-    Node *fourth = new Node(25);
-    Node *fifth = new Node(15);
-    Node *sixth = new Node(10);
-    Node *seventh = new Node(12);
-    Node *eighth = new Node(2);
+    Node *fourth = new Node(35);
+    Node *fifth = new Node(55);
+    Node *sixth = new Node(60);
+    Node *seventh = new Node(62);
+    Node *eighth = new Node(72);
 
     Node* head = first;
-    Node* tail = sixth;
+    Node* tail = eighth;
 
     head->next = second;
     second->next = third;
@@ -102,10 +106,9 @@ int main()
     eighth->next = NULL;
 
     int lengthOfLl = printLlAndGetLength(head);
-    int k = 3;
+    int k = 2;
 
     printLlAndGetLength(reverseKNodes(head ,k ,lengthOfLl));
 
     return 0;
 }
-*/

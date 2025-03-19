@@ -1,4 +1,4 @@
-// Find middle of the linked list.
+// Leetcode 876 Find middle of the linked list.
 
 #include<iostream>
 using namespace std;
@@ -7,6 +7,10 @@ class Node{
 public:
     int data;
     Node *next;
+
+    Node(){
+        this->next = NULL;
+    }
 
     Node(int data){
         this->data = data;
@@ -63,10 +67,12 @@ Node* middleNodeTortoise(Node* head , int length){
     }
     return slow;
 }
+// note: slow ptr tabhi 1 step aage badega jab fast 2 step aage bad raha ho
 */
 Node* middleNodeTortoise(Node* head , int length){
     Node* slow = head;
     Node* fast = head;
+    // while (fast != NULL)     //when postion of middle is controversial. 
     while (fast->next != NULL)
     {
     fast = fast->next;
@@ -101,8 +107,9 @@ bool IsPallindrome(Node* head , Node* midNode){
     head2 = reverseLlRecursively(prev , head2); 
     printLlAndGetLength(head2);
     
-    // Compare the elements : 
-    while (head2 != NULL ) // Kyunki head kanhi null par aayega hi nii isliye hum only (head2!= NULL) check kar rahe hain. Although kar ye bhi sakte hain : (head != NULL && head2 != NULL )
+    // Compare the elements :  
+    // 2 case banenge ek same-same length ki list and dusra different length ki list  
+    while (head2 != NULL ) // Kyunki head kabhi null par aayega hi nii isliye hum only (head2!= NULL) check kar rahe hain. Although kar ye bhi sakte hain : (head != NULL && head2 != NULL )
     {
         if (head->data != head2->data)
         {

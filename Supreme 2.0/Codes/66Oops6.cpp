@@ -17,7 +17,7 @@ public:
             y = obj.y;
         }
     */
-   
+
     // Deep copy (khud se karna padegi)
     abc(const abc &obj)
     {
@@ -26,22 +26,31 @@ public:
     }
 
     void print()
-    {
+    { 
         cout << "X ki value : " << x << endl
              << "y ki value : " << *y << endl
              << "y ka address : " << y;
+    }
+
+    ~abc(){
+        delete y;
     }
 };
 
 int main()
 {
-    cout << "Object a banaya : " << endl;
+    cout<<"Object a banaya : " << endl;
     abc a(2, 3);
     a.print();
-    cout << endl
-         << "object b banaya : " << endl;
+    cout<<endl<< "object b banaya : " << endl;
     abc b(a);
     b.print();
+    cout << endl;
+
+    abc *c = new abc(20, 30); 
+    abc d = *c;
+    delete c;
+    d.print(); 
 
     return 0;
 }

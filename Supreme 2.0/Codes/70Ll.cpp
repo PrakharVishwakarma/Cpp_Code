@@ -1,4 +1,4 @@
-// Linkled list creation and Insertion : 
+// Singly Linkled list creation and Insertion and deletion : 
 
 #include<iostream>
 using namespace std;
@@ -6,8 +6,11 @@ using namespace std;
 class Node{
 public:
     int data;
-    Node *next;
+    Node* next;
 
+    Node(){
+        this->next = NULL;
+    }
     Node(int data){
         this->data = data;
         this->next = NULL;
@@ -87,7 +90,7 @@ void insertAtPosition(Node* &head ,Node* &tail , int data , int &length, int pos
     
     prev->next = newNode;
     newNode->next = curr;
-    
+    // It can be done with the help of only prev 
 }
 
 void deleteNode(Node* &head , Node* &tail, int length ,int position){

@@ -9,6 +9,10 @@ public:
     int data;
     Node *next;
 
+    Node(){
+        this->next = NULL;
+    }
+
     Node(int data){
         this->data = data;
         this->next = NULL;
@@ -37,9 +41,10 @@ int printLlAndGetLength(Node *head){                       // Node pass by refre
 return length;
 }
 
+
 // Using map: 
 bool hasCycle(Node* head){
-    map<Node* , bool>table;
+    map<Node* , bool>table;     
     Node* temp = head;
     while (temp != NULL)
     {
@@ -54,6 +59,7 @@ bool hasCycle(Node* head){
     }
     return false;   
 }
+
 // Using Slow fast(tortoise algorithms)
 bool hasCycleTortoise(Node* &head){
     Node* slow = head;
@@ -92,7 +98,7 @@ Node* findStartOfLoop(Node* &head){
         }
     }
     slow = head;
-    while (fast != slow)
+    while (fast != slow) 
     {
         slow = slow->next;
         fast = fast->next;
@@ -132,6 +138,7 @@ void removeLoop(Node* head){
         temp = temp->next;
     }
     temp->next = NULL;
+    /*Logic is since we have starting point of cycle, toh ek pointer starting of loop pe rakho(startPoint) and dusre pointer(temp) ko starting of cycle se le tab tak traverse karao jab tak temp-> next!=startpoint of loop. once we got it then temp->next == NULL */
 }
 
 int main(){

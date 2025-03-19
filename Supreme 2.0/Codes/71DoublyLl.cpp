@@ -9,11 +9,17 @@ public:
     Node* prev ;
     Node* next ;
 
+    Node(){
+        this->prev = NULL;
+        this->next = NULL;
+    }
+
     Node(int data){
         this->data = data;
         this->prev = NULL;
         this->next = NULL;
     }
+
     ~Node(){
         cout<<"Destructor called."<<endl;
     }

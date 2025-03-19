@@ -8,6 +8,10 @@ public:
     int data;
     Node *next;
 
+    Node(){
+        this->next = NULL;
+    }
+
     Node(int data){
         this->data = data;
         this->next = NULL;
@@ -48,10 +52,10 @@ Node* reverseLlIteratively(Node* head){
     }
     return currPrev;
 }
+// Time Complexity = O(n)
 
 Node* reverseLlRecursively(Node* currPrev, Node* curr){
-    if (curr == NULL)
-    {
+    if (curr == NULL){
         return currPrev;
     }
     Node *currNext = curr->next;

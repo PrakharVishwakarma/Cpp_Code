@@ -12,9 +12,9 @@ class Nstack{
     int freeSpot;
 public:
     Nstack(int n, int size):numOfStacks(n),sizeOfArr(size){
+        top = new int[n];   // Stores top of each (ith) stack.
         a = new int[size];
-        top = new int[n];
-        next = new int[size];
+        next = new int[size];   // Initially Stores next free spot    or      can point to next elem after top elem of that particular stack(jab us particular stack ke andar kuchh hoga).
 
         for (int i = 0; i < n; i++)
         {
@@ -71,7 +71,7 @@ int main(){
     
     Nstack nSt(3,6);
     cout<<nSt.push(10 , 1)<<endl;
-    cout<<nSt.push(10 , 1)<<endl;
+    cout<<nSt.pop(1)<<endl;
 
 
 return 0;

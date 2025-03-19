@@ -14,7 +14,9 @@ public:
     Demo(const Demo &srcobj)
     {
         this->a = srcobj.a;
+
         this->b = srcobj.b;
+        
         this->p = new int;
         *this->p = *(srcobj.p);
     }

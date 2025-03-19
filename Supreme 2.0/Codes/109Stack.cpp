@@ -1,22 +1,21 @@
 // Leetcode 394 : Decode String:
 
-#include<iostream>
-#include<stack>
+#include <iostream>
+#include <stack>
 #include <sstream>
-#include<string>
-#include<algorithm>
+#include <string>
+#include <algorithm>
 
 using namespace std;
 
-string decodeString(string &str){
-    stack<string>st;
-
-    for(auto ch : str){
-        if(ch == ']')
+string decodeString(string &str)
+{
+    stack<string> st;
+    for (auto ch : str){
+        if (ch == ']')
         {
             string stringToRepeat = "";
-            while (!st.empty() && st.top()[0] == '[')
-            {
+            while (!st.empty() && st.top() != "["){
                 string top = st.top();
                 stringToRepeat += top;
                 st.pop();
@@ -24,8 +23,7 @@ string decodeString(string &str){
             st.pop();
 
             string numericTime = "";
-            while (!st.empty() && isdigit(st.top()[0]) )
-            {
+            while (!st.empty() && isdigit(st.top()[0])){
                 numericTime += st.top();
                 st.pop();
             }
@@ -33,29 +31,31 @@ string decodeString(string &str){
             int numTimesToRepeat = stoi(numericTime);
 
             string currentDecodedString = "";
-            while (numTimesToRepeat--)
-            {
+            while (numTimesToRepeat--){
                 currentDecodedString += stringToRepeat;
             }
             st.push(currentDecodedString);
         }
         else{
-            string temp(1,ch);
+            string temp(1, ch);
             st.push(temp);
         }
     }
     string ans;
     while (!st.empty())
     {
-        ans+=st.top();
+        ans += st.top();
         st.pop();
     }
-    reverse(ans.begin(),ans.end());    
-return ans;
+    reverse(ans.begin(), ans.end());
+    return ans;
 }
 
-int main(){
+int main()
+{
     string str = "3[a2[bc]]4ab";
-    cout<<"Decoded String is : "<<decodeString(str);
-return 0;
+    cout << "Decoded String is : " << decodeString(str);
+    
+    return 0;
 }
+

@@ -9,6 +9,10 @@ public:
     int data;
     Node *next;
 
+    Node(){
+        this->next = NULL;
+    }
+
     Node(int data){
         this->data = data;
         this->next = NULL;
@@ -37,13 +41,10 @@ return length;
 }
 
 void linkDelete(Node* head, int m , int n){
-    if (!head)
-    { 
-        return;
-    }
-
+    if (!head) return;
+    
     Node* it = head;
-    for (int i = 0; i < m; ++i)
+    for (int i = 0; i < m-1; ++i)
     {
         if (!it)return;
         it = it->next;
@@ -51,6 +52,7 @@ void linkDelete(Node* head, int m , int n){
 
     if (!it)return;
     Node* mthNode = it;
+    it = mthNode->next;
     for (int i = 0; i < n; ++i)
     {
         if (!it)break;;
@@ -88,7 +90,7 @@ int main()
 
     int lengthOfLl = printLlAndGetLength(head);
     int m = 2;
-    int n = 1;
+    int n = 2;
     linkDelete(head , m , n);
     printLlAndGetLength(head);
 return 0;

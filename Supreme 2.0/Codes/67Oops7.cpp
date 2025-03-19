@@ -15,6 +15,7 @@ public:
         width = val;
     }
     friend class Boxfrnd;
+    //The friend keyword in C++ allows a function or another class to access the private and protected members of the class where it is declared. 
 };
 
 class Boxfrnd{
