@@ -1,9 +1,13 @@
 {
     "files.associations": {
+        "*.ejs": "html",
         "ostream": "cpp",
         "iostream": "cpp",
         "bitset": "cpp",
         "chrono": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "vector": "cpp",
+        "xutility": "cpp",
+        "queue": "cpp"
     }
 }

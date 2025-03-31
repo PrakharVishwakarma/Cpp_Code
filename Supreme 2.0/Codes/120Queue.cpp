@@ -1,13 +1,14 @@
 // Reverse a Queue.
 
-#include<iostream>
-#include<stack>
-#include<queue>
+#include <iostream>
+#include <stack>
+#include <queue>
 
 using namespace std;
 
-void reverseQueue(queue<int> &q){
-    stack<int>s;
+void reverseQueue(queue<int> &q)
+{
+    stack<int> s;
 
     while (!q.empty())
     {
@@ -21,25 +22,27 @@ void reverseQueue(queue<int> &q){
         s.pop();
         q.push(topElement);
     }
-
 }
 
-void reverseUsingRecc(queue<int> &q){
-    if (q.empty())return;
-    
+void reverseUsingRecc(queue<int> &q)
+{
+    if (q.empty())
+        return;
+
     int temp = q.front();
     q.pop();
 
     reverseUsingRecc(q);
 
     q.push(temp);
-
 }
 
-void reverseKEle(queue<int> &q, int k, int n){
-    if(k==0 || k>n)return;
-    
-    stack<int>st;
+void reverseKEle(queue<int> &q, int k, int n)
+{
+    if (k == 0 || k > n)
+        return;
+
+    stack<int> st;
     for (int i = 0; i < k; i++)
     {
         int frontElement = q.front();
@@ -58,8 +61,6 @@ void reverseKEle(queue<int> &q, int k, int n){
         q.pop();
         q.push(temp);
     }
-    
-    
 }
 
 int main()
@@ -71,21 +72,21 @@ int main()
     q.push(54);
     q.push(26);
     q.push(20);
-/* Using Stack : */
+    /* Using Stack : */
     // reverseQueue(q);
-/* Using recursion : */
+    /* Using recursion : */
     // reverseUsingRecc(q);
-/* Reverse first K elemen*/
+    /* Reverse first K elemen*/
     int k = 3;
     int n = q.size();
-    reverseKEle(q , k , n);
+    reverseKEle(q, k, n);
     while (!q.empty())
     {
         int element = q.front();
         q.pop();
-        cout<<element<<" ";
-    }cout<<endl;
-    
+        cout << element << " ";
+    }
+    cout << endl;
 
-return 0;
+    return 0;
 }

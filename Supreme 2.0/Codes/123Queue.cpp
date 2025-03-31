@@ -20,6 +20,7 @@ void printFirstNeg(int *arr, int size, int k){
     
     for (int i = k; i < size ; i++)
     {
+        // Pehle last window ka ans print kar lo
         if (dq.empty())cout<<" 0 ";
         else cout<<arr[dq.front()]<<" "; 
 
@@ -32,14 +33,14 @@ void printFirstNeg(int *arr, int size, int k){
             dq.push_back(i);
         }   
     }
-    if (dq.empty())cout<<" 0 ";
+    if (dq.empty())cout<<" 0 ";     // Last window ka answer, kyunki loop me last window ka answer print kar rahe hain.
     else cout<<arr[dq.front()]<<" ";  
     
 }
 
 int main()
 {
-    int arr[] = {2 , -5 , 4 , -1 , -2 , 0 , 5};
+    int arr[] = {2 , -5 , 4 , -1 , 2 , 0 , 5};
     int n = sizeof(arr)/sizeof(int);
     int k = 3;
     printFirstNeg(arr , n , k);

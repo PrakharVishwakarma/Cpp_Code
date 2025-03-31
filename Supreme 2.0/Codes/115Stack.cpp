@@ -62,3 +62,54 @@ int main()
 
     return 0;
 }
+
+
+/*
+// Linked list Solution : 
+
+class Node {
+public:
+    string url;
+    Node* prev;
+    Node* next;
+    
+    Node(string url) {
+        this->url = url;
+        prev = nullptr;
+        next = nullptr;
+    }
+};
+
+
+class BrowserHistory {
+public:
+    Node* current;
+    BrowserHistory(string homepage) {
+        current = new Node(homepage);
+    }
+    
+    void visit(string url) {
+        Node* newNode = new Node(url);
+        current -> next = newNode;
+        newNode -> prev = current;
+        current = current -> next;
+    }
+    
+    string back(int steps) {
+        while(steps--){
+            if(current -> prev) current = current -> prev;
+            else break;
+        }
+        return current->url;
+    }
+    
+    string forward(int steps) {
+        while(steps--){
+            if(current -> next) current = current -> next;
+            else break;
+        }
+        return current->url;
+    }
+};
+
+*/

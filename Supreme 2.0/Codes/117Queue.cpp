@@ -1,16 +1,16 @@
 // Implementation of queue using array: 
 
 #include<iostream>
-#include <bits/stdc++.h>
 using namespace std;
 
-class Queue{
+class Queue{ 
 
-public: int *arr;
+private: int *arr;
     int size;
     int front;
     int rear;
 
+public:
     Queue(int size){
         this->size = size;
         arr = new int[size];
@@ -18,6 +18,11 @@ public: int *arr;
         // memset(arr, 0, size*sizeof(*arr));   <-- To set all the element of an array with zero we can also use 
         front = -1;
         rear = -1;
+    }
+
+    // Destructor: Frees the allocated memory
+    ~Queue() {
+        delete[] arr;
     }
 
     void push(int value){
@@ -63,7 +68,7 @@ public: int *arr;
     }
 
     int getQSize(){
-        return rear - front + 1;
+        return (front == -1 && rear == -1) ? 0 : rear - front + 1;
     }
 
     int getFront(){
@@ -83,10 +88,15 @@ public: int *arr;
     }
 
     void printQ(){
-        for (int i = 0; i < size; i++)
-        {
-            cout<<arr[i]<<" ";
-        }cout<<endl; 
+        if (empty()) {
+            cout << "Queue is empty!" << endl;
+            return;
+        }
+        cout << "Queue: ";
+        for (int i = front; i <= rear; i++) {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
     }
 
 };
@@ -114,3 +124,5 @@ int main(){
 
 return 0;
 }
+
+
