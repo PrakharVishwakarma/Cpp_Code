@@ -9,8 +9,8 @@ vector<int> maxSlidingWindow(vector<int>& nums, int k) {
     vector<int>ans;
     deque<int> dq;
 
-    for (int i = 0; i < k; i++)
-    {
+    // Process First Window 
+    for (int i = 0; i < k; i++){
         int element = nums[i];
         while (!dq.empty() && element > dq.back())
         {
@@ -19,9 +19,11 @@ vector<int> maxSlidingWindow(vector<int>& nums, int k) {
         dq.push_back(i);
     }
     
-    for (int i = k; i < nums.size(); i++)
-    {
+    // Process Remaining Windows
+    for (int i = k; i < nums.size(); i++){
         ans.push_back(nums[dq.front()]);
+
+        // Removal of element is done twice  
         if (i-dq.front() >= k)
         {
             dq.pop_front();
@@ -31,8 +33,11 @@ vector<int> maxSlidingWindow(vector<int>& nums, int k) {
         {
             dq.pop_back();
         }
+        
         dq.push_back(i);
     }
+
+    // Process Last Window
     ans.push_back(nums[dq.front()]);
 return ans;
 }
