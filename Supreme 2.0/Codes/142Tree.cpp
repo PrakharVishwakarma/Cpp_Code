@@ -13,10 +13,11 @@ public:
     int data;
     Node* left;
     Node* right;
-    Node(int _data){
-        this->data = _data;
-        this->left = NULL;
-        this->right = NULL;
+    Node(int _data) : data(_data), left(NULL), right(NULL) {}
+
+    ~Node(){
+        delete left;    
+        delete right;
     }
 };
 
@@ -49,7 +50,7 @@ void levelOrderTraversalBfs(Node* root){
         q.pop(); 
         if (front == NULL)
         {
-            cout<<endl;
+            cout<<endl; 
             if (!q.empty())
             {
                 q.push(NULL);
@@ -132,6 +133,7 @@ void printTopView(Node* root){
         cout<<i.second<<" ";
     }
 }
+
 void printBottomView(Node* root){
     map<int , int> hdToNodeMap;
     queue< pair<Node* , int>>q;
@@ -165,11 +167,9 @@ void printBottomView(Node* root){
 
 // Boundary view of Binary Tree: 
 void printLeftBv(Node* root){
-    if (root == NULL)
-        return;
+    if (root == NULL) return;
     
-    if (root->left == NULL && root->right == NULL)
-        return;
+    if (root->left == NULL && root->right == NULL) return;
     
     cout<<root->data<<" ";
     if (root->left != NULL)
@@ -208,14 +208,26 @@ void printRightBv(Node* root){
 }
 
 void printBoundaryView(Node* root){
-    if (root == NULL)
-        return;
+    if (root == NULL) return;
 
+    printLeftBv(root);
+    printLeafBv(root);
+    if(root->left != NULL)
+    {
+        printRightBv(root->right);
+    }else{
+        printRightBv(root->left);
+    }
+
+
+//  OR        
+    /*
     cout<<root->data<<" ";
     printLeftBv(root->left);
     printLeafBv(root->left);
     printLeafBv(root->right);
     printRightBv(root->right);
+    */    
 }   
 
 int main(){

@@ -51,7 +51,6 @@ vector<int> diagonalTraversal(Node* root){
             {
                 q.push(temp->left);
             }
-            
             temp = temp->right;
         }
     }

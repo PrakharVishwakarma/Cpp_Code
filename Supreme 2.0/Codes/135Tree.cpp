@@ -1,6 +1,24 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 
+// Generic Tree Node
+class GTNode {
+public:
+    int data;
+    vector<Node*> children;   // Any number of children
+
+    GTNode(int _data) : data(_data) {}
+
+    ~GTNode() {
+        // Recursively delete all children
+        for (Node* child : children) {
+            delete child;
+        }
+    }
+};
+
+// Binary Tree Node
 class Node{
 public:
     int data;

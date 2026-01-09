@@ -1,5 +1,4 @@
-// Leetcode 110 : Balanced Binary Tree : Balanced binary tree ka matlab har node par
-// ja kar ke check karna hai left and right subtree ki height ka diffrencce <= 1 hona chaiye
+// Leetcode 110 : Balanced Binary Tree : According to Leetcode, a balanced binary tree is a binary tree in which the left and right subtrees of every node differ in height by no more than 1.
 
 #include<iostream>
 #include<algorithm>
@@ -11,10 +10,11 @@ public:
     int data;
     Node* left;
     Node* right;
-    Node(int _data){
-        this->data = _data;
-        this->left = NULL;
-        this->right = NULL;
+    Node(int _data) : data(_data), left(NULL), right(NULL) {}
+       
+    ~Node(){
+        delete left;
+        delete right;
     }
 };
 
@@ -22,10 +22,10 @@ Node* createTree(){
     int data;
     cout<<"Enter the value of the node : ";
     cin>>data;
-    if (data == -1)
-    {
-        return NULL;
-    }
+
+    // if data is -1 than return null 
+    if (data == -1) return NULL;
+    
 
     Node* root = new Node(data);
 
@@ -39,18 +39,13 @@ return root;
 
 
 int height(Node* root){
-    if (root == nullptr)
-        return 0;
-    
-    int leftSubTreeHei = height(root->left);
-    int rightSubTreeHei = height(root->right);
+    if (root == nullptr) return 0;
 
-return max(leftSubTreeHei, rightSubTreeHei) + 1;
+    return max(height(root->left), height(root->right)) + 1;
 }
 
 bool isBalancedTree(Node* root){
-    if (root == nullptr)
-        return true;
+    if (root == nullptr) return true;
     
     bool isDiffrencce = abs(height(root->left)- height(root->right)) <= 1 ? true : false;
     bool isLeftBalanced = isBalancedTree(root->left); 

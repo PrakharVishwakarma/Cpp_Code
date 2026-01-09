@@ -3,17 +3,18 @@ Given the root of a binary tree and an integer targetSum, return all root-to-lea
 
 #include<iostream>
 #include<vector>
-using namespace std;
+using namespace std; 
 
 class Node{
 public:
     int data;
     Node* left;
     Node* right;
-    Node(int _data){
-        this->data = _data;
-        this->left = NULL;
-        this->right = NULL;
+    Node(int _data) : data(_data), left(NULL), right(NULL) {}
+
+    ~Node(){
+        delete left;
+        delete right;
     }
 };
 
@@ -37,21 +38,27 @@ return root;
 }
 
 void solve(Node* root, int targetSum ,int sum, vector<int>temp, vector<vector<int>> &ans) {
-    if (root == NULL)
-        return;
+    if (root == NULL) return;
 
     sum += root->data;
     temp.push_back(root->data);
 
     if (root->left == NULL && root->right == NULL)
     {
-        if(sum == targetSum)
-            ans.push_back(temp);
+        if(sum == targetSum)ans.push_back(temp);
         else return;
+        /*
+        only when ans is passed by reference 
+        else {
+            temp.pop_back();
+            return;
+        };
+        */
     }
     solve (root->left , targetSum , sum , temp , ans);
-    solve (root->right , targetSum , sum , temp , ans);
-    
+    solve (root->right , targetSum , sum , temp , ans);  
+
+    // temp.pop_back(); // only when ans is passed by reference
 }
 
 vector<vector<int>> pathSum(Node* root, int targetSum) {

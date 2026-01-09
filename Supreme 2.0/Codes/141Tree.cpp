@@ -1,4 +1,5 @@
-// Form a tree using the given preorder and postorder.
+// Form a tree using the given preorder and inorder
+// Form a tree using the given postorder and inorder
 
 #include<iostream>
 #include<queue>
@@ -66,7 +67,7 @@ void createMapping(int inorder[], map<int,int> &valueToIndex , int size){
         valueToIndex[element] = index;
     }   
 }
-Node* constructBTUsingPreNInoerde(int preorder[], int inorder[], int &preOrderIndex , int inOrderStart, int inOrderEnd, int size, map<int,int> &valueToIndex1){
+Node* constructBTUsingPreNInorder(int preorder[], int inorder[], int &preOrderIndex , int inOrderStart, int inOrderEnd, int size, map<int,int> &valueToIndex1){
     if (preOrderIndex >= size || inOrderStart > inOrderEnd)
     {
         return NULL;
@@ -77,8 +78,8 @@ Node* constructBTUsingPreNInoerde(int preorder[], int inorder[], int &preOrderIn
     Node* root = new Node(element);
     int position = valueToIndex1[element];
 
-    root->left = constructBTUsingPreNInoerde(preorder , inorder, preOrderIndex, inOrderStart, position-1, size, valueToIndex1);
-    root->right = constructBTUsingPreNInoerde(preorder , inorder, preOrderIndex, position+1 , inOrderEnd, size, valueToIndex1);
+    root->left = constructBTUsingPreNInorder(preorder , inorder, preOrderIndex, inOrderStart, position-1, size, valueToIndex1);
+    root->right = constructBTUsingPreNInorder(preorder , inorder, preOrderIndex, position+1 , inOrderEnd, size, valueToIndex1);
 
 return root;
 }
@@ -94,8 +95,8 @@ Node* constructBTUsingPostNInoerde(int postorder[], int inorder[], int &postorde
     Node* root = new Node(element);
     int position = valueToIndex2[element];
 
-    root->right = constructBTUsingPreNInoerde(postorder , inorder, postorderindex, position+1 , inOrderEnd, size, valueToIndex2);
-    root->left = constructBTUsingPreNInoerde(postorder , inorder, postorderindex, inOrderStart, position-1, size, valueToIndex2);
+    root->right = constructBTUsingPreNInorder(postorder , inorder, postorderindex, position+1 , inOrderEnd, size, valueToIndex2);
+    root->left = constructBTUsingPreNInorder(postorder , inorder, postorderindex, inOrderStart, position-1, size, valueToIndex2);
 
 return root;
 }
@@ -109,7 +110,7 @@ int main(){
     int inOrderEnd = size-1;
     map<int, int> valuetoInd;
     createMapping(inorder , valuetoInd, size);
-    Node * root1 = constructBTUsingPreNInoerde(preorder, inorder, preOrderIndex , inOrderStart, inOrderEnd, size, valuetoInd);
+    Node * root1 = constructBTUsingPreNInorder(preorder, inorder, preOrderIndex , inOrderStart, inOrderEnd, size, valuetoInd);
     levelOrderTraversalBfs(root1);cout<<endl;
 
     // Using inorder and postorder:

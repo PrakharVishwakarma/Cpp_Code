@@ -4,15 +4,16 @@
 using namespace std;
 
 
-class Node{
+class Node{ 
 public:
     int data;
     Node* left;
     Node* right;
-    Node(int _data){
-        this->data = _data;
-        this->left = NULL;
-        this->right = NULL;
+    Node(int _data) : data(_data), left(NULL), right(NULL) {}\
+
+    ~Node(){
+        delete left;
+        delete right;
     }
 };
 
@@ -20,10 +21,7 @@ Node* createTree(){
     int data;
     cout<<"Enter the value of the node : ";
     cin>>data;
-    if (data == -1)
-    {
-        return NULL;
-    }
+    if (data == -1) return NULL;
 
     Node* root = new Node(data);
 
@@ -36,18 +34,12 @@ return root;
 }
 
 Node* lowestCommonAncestor(Node* root, Node* p, Node* q) {
-    if (root == NULL)
-    {
-        return NULL;
-    }
-    if (root == p)
-    {
-        return p;
-    }
-    if (root == q)
-    {
-        return q;
-    }
+    if (root == NULL) return NULL;
+    
+    if (root == p) return p;
+    
+    if (root == q) return q;
+    
 
     Node* leftAns = lowestCommonAncestor(root->left , p , q);    
     Node* rightAns = lowestCommonAncestor(root->right , p , q);   

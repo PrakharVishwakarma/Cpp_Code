@@ -9,10 +9,11 @@ public:
     int data;
     Node* left;
     Node* right;
-    Node(int _data){
-        this->data = _data;
-        this->left = NULL;
-        this->right = NULL;
+    Node(int _data) : data(_data), left(NULL), right(NULL) {}
+       
+    ~Node(){
+        delete left;
+        delete right;
     }
 };
 
@@ -36,12 +37,10 @@ return root;
 }
 
 bool solve(Node* root, int targetSum, int sum){
-    if (root == NULL)
-        return false;
+    if (root == NULL) return false;
         
     sum += root->data;
-    if (root->left == NULL && root->right == NULL)
-    {
+    if (root->left == NULL && root->right == NULL){
         if(sum == targetSum)return true;
         else return false;
     }
